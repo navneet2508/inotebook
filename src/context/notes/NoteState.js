@@ -34,22 +34,10 @@ const NoteState = (props) => {
         "auth-token":
           "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjM3MzhjOTRiZTIyOTcwNWYzYzU5ZDczIn0sImlhdCI6MTY2ODUxNzAzOX0.B-YosPsmncvA7EltqlEMyzUAqO3gli5lrtg7eXoYPC0",
       },
-      body: JSON.stringify(title, description, tag),
+      body: JSON.stringify({ title, description, tag }),
     });
-    const json = await response.json();
-    console.log(json);
 
-    console.log("Adding a new note");
-
-    const note = {
-      _id: "63740205cd0b1719e3e41bd2",
-      user: "63738c94be229705f3c59d73",
-      title: title,
-      description: description,
-      tag: tag,
-      date: "2022-11-15T21:17:57.488Z",
-      __v: 0,
-    };
+    const note = await response.json();
     setNotes(notes.concat(note));
   };
 

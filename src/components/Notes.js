@@ -84,6 +84,8 @@ const Notes = () => {
                     value={note.etitle}
                     aria-describedby="emailHelp"
                     onChange={onChange}
+                    minLength={5}
+                    required
                   />
                 </div>
                 <div className="mb-3">
@@ -97,6 +99,8 @@ const Notes = () => {
                     name="edescription"
                     value={note.edescription}
                     onChange={onChange}
+                    minLength={5}
+                    required
                   />
                 </div>
                 <div className="mb-3">
@@ -116,6 +120,9 @@ const Notes = () => {
             </div>
             <div className="modal-footer">
               <button
+                disabled={
+                  note.etitle.length < 5 || note.edescription.length < 5
+                }
                 ref={refClose}
                 type="button"
                 className="btn btn-secondary"
@@ -136,7 +143,10 @@ const Notes = () => {
       </div>
 
       <div className="row my-3">
-        <h2>You Notes</h2>
+        <h2>Your Notes</h2>
+        <div className="container">
+          {notes.length === 0 && "No notes to display"}
+        </div>
         {notes.map((note) => {
           return (
             <Noteitem key={note._id} updateNote={updateNote} note={note} />
