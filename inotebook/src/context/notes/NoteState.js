@@ -5,11 +5,11 @@ import { useHistory } from "react-router-dom";
 const NoteState = (props) => {
   const history = useHistory();
   const [notes, setNotes] = useState([]);
-
+  const serverUrl = "https://inotebook-l3y8.onrender.com";
   // Create a user - Sign up
   const userSignup = async (name, email, password) => {
     // APi call
-    const response = await fetch(`/api/auth/createuser`, {
+    const response = await fetch(`${serverUrl}/api/auth/createuser`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -31,7 +31,7 @@ const NoteState = (props) => {
   // Authenticate a user - Login
   const userLogin = async (email, password) => {
     // APi call
-    const response = await fetch(`/api/auth/login`, {
+    const response = await fetch(`${serverUrl}/api/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -53,7 +53,7 @@ const NoteState = (props) => {
   // Fetch all the notes
   const getAllNotes = async () => {
     // APi call
-    const response = await fetch(`/api/notes/fetchallnotes`, {
+    const response = await fetch(`${serverUrl}/api/notes/fetchallnotes`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -69,7 +69,7 @@ const NoteState = (props) => {
   // Add a note
   const addNote = async (title, description, tag) => {
     // API call
-    const response = await fetch(`/api/notes/addnotes`, {
+    const response = await fetch(`${serverUrl}/api/notes/addnotes`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -85,7 +85,7 @@ const NoteState = (props) => {
   // Edit a note
   const editNote = async (id, title, description, tag) => {
     // APi call
-    const response = await fetch(`/api/notes/updatenotes/${id}`, {
+    const response = await fetch(`${serverUrl}/api/notes/updatenotes/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -112,7 +112,7 @@ const NoteState = (props) => {
   // Delete a note
   const deleteNotes = async (id) => {
     // API call
-    await fetch(`/api/notes/deletenotes/${id}`, {
+    await fetch(`${serverUrl}/api/notes/deletenotes/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
